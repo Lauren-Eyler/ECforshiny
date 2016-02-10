@@ -1,0 +1,16 @@
+Package: ECforshiny
+Type: Package
+Title: Population-Specific Economic Groups Defined by Few Asset
+        Variables
+Version: 1.0.1
+Imports: WeightedCluster, cluster, utils, foreach, doParallel
+Suggests: GenOrd, stats, mvtnorm, Matrix, MASS
+Date: 2015-10-30
+Author: Lauren Eyler, Alan Hubbard, Catherine Juillard
+Maintainer: Lauren Eyler <economic.clusters@gmail.com>
+Description: The aim of this package is to facilitate health disparities research in time-constrained, low-resource settings, such as trauma registries in low- and middle-income countries. The 'EconomicClusters' algorithm defines population-specific metrics of economic status based on limited numbers of asset variables. This package is designed for use with large-scale household survey data, such as Demographic and Health Survey (DHS) data sets. Economic groups are defined by running weighted k-medoids clustering using package 'WeightedCluster' on all combinations of a limited number of asset variables. The combination of variables and number of clusters with the highest average sillhouette width (ASW) are selected as the optimal economic clustering model. We also include support functions to facilitate the use of the 'EconomicClusters' algorithm.
+License: GPL (>= 3)
+URL: http://global.surgery.ucsf.edu/resources.aspx
+RoxygenNote: 5.0.1
+NeedsCompilation: no
+Packaged: 2015-12-10 00:58:24 UTC; laureneyler
