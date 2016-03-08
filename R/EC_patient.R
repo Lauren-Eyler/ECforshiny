@@ -10,7 +10,7 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
   }
   group<-list()
   for (i in 1:nrow(Pts)){
-    group[[i]]<-which(dizzy[i,] == min(dizzy[i,]))
+    group[[i]]<-colnames(dizzy)[which(dizzy[i,] == min(dizzy[i,]))]
   }
   for (i in 1:nrow(Pts)){
     if (length(group[[i]])>1){
