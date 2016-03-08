@@ -15,7 +15,7 @@ EC_time<-function(X, Y=rep(NA, nrow(X)), nvars, kmin, kmax, ncores){
 #' @import foreach
   ASW<-foreach::foreach (i=1:ncores, .combine='rbind') %dopar% {
     combi<-X[,!is.na(col_indx[i,])]
-    if(any(!is.na(Y))){ 
+    if(any(!is.na(Y))){
       combi<-cbind(Y, combi)
     }
     dizzy<-cluster::daisy(combi, metric="gower")
@@ -33,14 +33,14 @@ EC_time<-function(X, Y=rep(NA, nrow(X)), nvars, kmin, kmax, ncores){
   clust<-list()
   K<-list()
   for (a in 1:nrow(ASW_max_model)){
-    model[[a]]<-ASW_max_model[a,1]    
+    model[[a]]<-ASW_max_model[a,1]
     Assets[[a]]<-which( !is.na(col_indx[model[[a]],]), arr.ind=TRUE)
     Assets[[a]]<-names(Assets[[a]])
     if (any(!is.na(Y))){
       Assets[[a]]<-c(deparse(substitute(Y)), Assets[[a]])
     }
     clust[[a]]<-ASW_max_model[a,2]
-    K[[a]]<-2-1+clust[[a]]
+    K[[a]]<-kmin-1+clust[[a]]
   }
   results<-list()
   results$ASW_max<-ASW_max
