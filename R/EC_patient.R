@@ -21,7 +21,6 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
     }
   }
   group<-unlist(group)
-  mapvalues(x, from = as.character(c(1:nrow(Medoids))), to = as.character(mednames))
   results<-list()
   results$group<-group
   if (keep_dist==TRUE){
