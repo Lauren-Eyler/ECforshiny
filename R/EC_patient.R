@@ -1,5 +1,7 @@
 EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
   ptmed<-matrix(nrow=2,ncol=ncol(Pts))
+  mednames<-Medoids[,1]
+  Medoids<-Medoids[,-1]
   dizzy<-matrix(nrow=nrow(Pts),ncol=nrow(Medoids))
   for (i in 1:nrow(Pts)){
     for (a in 1:nrow(Medoids)){
@@ -8,6 +10,7 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
       rm(ptmed)
     }
   }
+  colnames(dizzy)<-mednames
   group<-list()
   for (i in 1:nrow(Pts)){
     group[[i]]<-colnames(dizzy)[which(dizzy[i,] == min(dizzy[i,]))]
@@ -18,6 +21,7 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
     }
   }
   group<-unlist(group)
+  mapvalues(x, from = as.character(c(1:nrow(Medoids))), to = as.character(mednames))
   results<-list()
   results$group<-group
   if (keep_dist==TRUE){
