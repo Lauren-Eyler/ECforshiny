@@ -21,6 +21,7 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
     }
   }
   group<-unlist(group)
+  group<-as.factor(group)
   results<-list()
   results$group<-group
   if (keep_dist==TRUE){
@@ -61,13 +62,7 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
   }
   clustmatchone<-as.data.frame(clustmatchone)
   rownames(clustmatchone)<-rownames(PatientsNAClust)
-  results_fix<-rep(NA, nrow(Pts))
-  results_fix<-as.data.frame(results_fix)
-  results_fix[which((rownames(results_fix)%in%rownames(clustmatchone))==TRUE),]<-clustmatchone
-  PtClust_nonas<-results$group[which(is.na(results$group)==FALSE)]
-  PtClust_nonas<-as.data.frame(PtClust_nonas)
-  rownames(PtClust_nonas)<-which(is.na(results$group)==FALSE)
-  results_fix[which((rownames(results_fix)%in%rownames(clustmatchone))==FALSE),]<-PtClust_nonas
-  results$group<-results_fix
+  results$group<-as.data.frame(results$group)
+  results$group[which((rownames(results$group)%in%rownames(clustmatchone))==TRUE),]<-clustmatchone
   return(results)
 }
