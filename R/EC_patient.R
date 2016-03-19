@@ -48,16 +48,16 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
   }
   cmatch_same<-vector()
   for (i in 1:length(clustmatch)){
-    if((min(clustmatch[[i]])==max(clustmatch[[i]]))==TRUE){
+    if(any(prop.table(table(clustmatch[[i]])))==1){
       cmatch_same[i]=TRUE
     } else {
       cmatch_same[i]=FALSE
     }
   }
-  clustmatchone<-rep(NA, nrow(PatientsNAClust))
+  clustmatchone<-factor(rep(NA, length=nrow(PatientsNAClust)), levels=levels(clustmatch[[1]]))
   for(i in 1:length(clustmatchone)){
     if(cmatch_same[i]==TRUE){
-      clustmatchone[i]<-min(clustmatch[[i]])
+      clustmatchone[i]<-clustmatch[[i]][1]
     }
   }
   clustmatchone<-as.data.frame(clustmatchone)
