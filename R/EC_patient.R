@@ -8,7 +8,7 @@ EC_patient<-function(Pts, Medoids, Pop, PopClusters, keep_dist=FALSE){
       rm(ptmed)
     }
   }
-  colnames(dizzy)<-mednames
+  colnames(dizzy)<-rownames(Medoids)
   group<-list()
   for (i in 1:nrow(Pts)){
     group[[i]]<-colnames(dizzy)[which(dizzy[i,] == min(dizzy[i,]))]
